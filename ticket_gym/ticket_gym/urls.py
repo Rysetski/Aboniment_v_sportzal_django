@@ -15,31 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from .views import (
-    UserProfileView, RegisterView, GymListView, GymDetailView,
-    SubscriptionListView, SubscriptionDetailView, DiscountListView, NotificationListView
-)
+from django.urls import path, include
 
 urlpatterns = [
-    # URLs для auth
-    path('auth/profile/', UserProfileView.as_view(), name='user-profile'),
-    path('auth/register/', RegisterView.as_view(), name='register'),
-
-    # URLs для gyms
-    path('gyms/', GymListView.as_view(), name='gym-list'),
-    path('gyms/<int:pk>/', GymDetailView.as_view(), name='gym-detail'),
-
-    # URLs для subscriptions
-    path('subscriptions/', SubscriptionListView.as_view(),
-         name='subscription-list'),
-    path('subscriptions/<int:pk>/', SubscriptionDetailView.as_view(),
-         name='subscription-detail'),
-
-    # URLs для discounts
-    path('discounts/', DiscountListView.as_view(), name='discount-list'),
-
-    # URLs для notifications
-    path('notifications/', NotificationListView.as_view(),
-         name='notification-list'),
+    path('admin/', admin.site.urls),
+    path('auth/', include('apps.auth.urls')),  # URL-ы для авторизации
+    path('gyms/', include('apps.gyms.urls')),  # URL-ы для спортзалов
+    # URL-ы для абонементов
+    path('subscriptions/', include('apps.subscriptions.urls')),
+    path('discounts/', include('apps.discounts.urls')),  # URL-ы для скидок
+    # URL-ы для уведомлений
+    path('notifications/', include('apps.notifications.urls')),
 ]
