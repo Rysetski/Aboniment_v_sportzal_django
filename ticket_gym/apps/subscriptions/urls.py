@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import GymListView, GymDetailView
+from .views import SubscriptionListView, SubscriptionDetailView
 
 urlpatterns = [
-    path('', GymListView.as_view(), name='gym-list'),
-    path('<int:pk>/', GymDetailView.as_view(), name='gym-detail'),
+    path('', SubscriptionListView.as_view(), name='subscription-list'),
+    path('<int:pk>/', SubscriptionDetailView.as_view(),
+         name='subscription-detail'),
 ]

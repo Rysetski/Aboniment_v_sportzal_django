@@ -4,20 +4,21 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .models import Subscription
 from .serializers import SubscriptionSerializer
+from notifications.tasks import send_notification  # Импорт задачи
 
 
 class SubscriptionListView(APIView):
     """Список всех абонементов"""
 
-    def get(self, request):
-        subscriptions = Subscription.objects.filter(user=request.user)
-        serializer = SubscriptionSerializer(subscriptions, many=True)
-        return Response(serializer.data)
-
     def post(self, request):
         serializer = SubscriptionSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(user=request.user)
+            subscription = serializer.save(user=request.user)
+            # Запуск задачи Celery для отправки уведомления
+            send_notification.delay(
+                user_id=request.user.id,
+                message=f"Вы оформили подписку на {subscription.gym.name}"
+            )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
