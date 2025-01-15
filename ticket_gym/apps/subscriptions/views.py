@@ -1,12 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse, HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import CustomUser, Gym, Subscription, Discount, Notification
-from .serializers import UserSerializer, GymSerializer, SubscriptionSerializer, DiscountSerializer, NotificationSerializer
+from django.shortcuts import get_object_or_404
+from .models import Subscription
+from .serializers import SubscriptionSerializer
 
 
 class SubscriptionListView(APIView):
@@ -33,3 +30,18 @@ class SubscriptionDetailView(APIView):
             Subscription, pk=pk, user=request.user)
         serializer = SubscriptionSerializer(subscription)
         return Response(serializer.data)
+
+    def put(self, request, pk):
+        subscription = get_object_or_404(
+            Subscription, pk=pk, user=request.user)
+        serializer = SubscriptionSerializer(subscription, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        subscription = get_object_or_404(
+            Subscription, pk=pk, user=request.user)
+        subscription.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
