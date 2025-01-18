@@ -4,10 +4,12 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .models import Gym
 from .serializers import GymSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class GymListView(APIView):
     """Список всех спортзалов"""
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         gyms = Gym.objects.all()
@@ -25,7 +27,10 @@ class GymListView(APIView):
 class GymDetailView(APIView):
     """Детали конкретного спортзала"""
 
-    def get(self, request, pk):
+
+permission_classes = [IsAuthenticated]
+
+   def get(self, request, pk):
         gym = get_object_or_404(Gym, pk=pk)
         serializer = GymSerializer(gym)
         return Response(serializer.data)

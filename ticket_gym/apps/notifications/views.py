@@ -4,10 +4,12 @@ from rest_framework import status
 from .models import Notification
 from .serializers import NotificationSerializer
 from django.shortcuts import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 
 
 class NotificationListView(APIView):
     """Список уведомлений пользователя"""
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         notifications = Notification.objects.filter(user=request.user)
@@ -25,7 +27,9 @@ class NotificationListView(APIView):
 class NotificationDetailView(APIView):
     """Детали уведомления"""
 
-    def get(self, request, pk):
+
+permission_classes = [IsAuthenticated]
+   def get(self, request, pk):
         notification = get_object_or_404(
             Notification, pk=pk, user=request.user)
         serializer = NotificationSerializer(notification)
@@ -49,6 +53,8 @@ class NotificationDetailView(APIView):
 
 class MarkNotificationAsReadView(APIView):
     """Отметить уведомление как прочитанное"""
+    
+permission_classes = [IsAuthenticated]
 
     def post(self, request, pk):
         notification = get_object_or_404(

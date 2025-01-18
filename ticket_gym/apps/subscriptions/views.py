@@ -5,10 +5,12 @@ from django.shortcuts import get_object_or_404
 from .models import Subscription
 from .serializers import SubscriptionSerializer
 from notifications.tasks import send_notification  # Импорт задачи
+from rest_framework.permissions import IsAuthenticated
 
 
 class SubscriptionListView(APIView):
     """Список всех абонементов"""
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         serializer = SubscriptionSerializer(data=request.data)
@@ -26,7 +28,9 @@ class SubscriptionListView(APIView):
 class SubscriptionDetailView(APIView):
     """Детали абонемента"""
 
-    def get(self, request, pk):
+
+permission_classes = [IsAuthenticated]
+   def get(self, request, pk):
         subscription = get_object_or_404(
             Subscription, pk=pk, user=request.user)
         serializer = SubscriptionSerializer(subscription)

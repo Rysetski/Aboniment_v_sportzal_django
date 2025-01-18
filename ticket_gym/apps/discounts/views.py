@@ -4,10 +4,12 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .models import Discount
 from .serializers import DiscountSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class DiscountListView(APIView):
     """Список всех доступных скидок"""
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         discounts = Discount.objects.all()
@@ -25,7 +27,9 @@ class DiscountListView(APIView):
 class DiscountDetailView(APIView):
     """Детали скидки"""
 
-    def get(self, request, pk):
+
+permission_classes = [IsAuthenticated]
+   def get(self, request, pk):
         discount = get_object_or_404(Discount, pk=pk)
         serializer = DiscountSerializer(discount)
         return Response(serializer.data)
