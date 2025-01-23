@@ -29,6 +29,7 @@ class DiscountDetailView(APIView):
 
 
 permission_classes = [IsAuthenticated]
+
    def get(self, request, pk):
         discount = get_object_or_404(Discount, pk=pk)
         serializer = DiscountSerializer(discount)
@@ -46,3 +47,6 @@ permission_classes = [IsAuthenticated]
         discount = get_object_or_404(Discount, pk=pk)
         discount.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    #проверка на момент создания чтобы не было пересечений
+    #и промежуточную таблицу создать

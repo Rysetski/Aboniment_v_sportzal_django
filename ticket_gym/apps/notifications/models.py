@@ -1,5 +1,5 @@
 from django.db import models
-from apps.auth.models import CustomUser  # Для связи с пользователем
+from apps.user_auth.models import CustomUser  # Для связи с пользователем
 
 
 class Notification(models.Model):

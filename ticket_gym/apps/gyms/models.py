@@ -1,6 +1,6 @@
 from django.db import models
 # Для связи с пользователем, если потребуется
-from apps.auth.models import CustomUser
+from apps.user_auth.models import CustomUser
 
 
 # Create your models here.
