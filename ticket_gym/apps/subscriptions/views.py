@@ -1,11 +1,13 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from django.shortcuts import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from .models import Subscription
 from .serializers import SubscriptionSerializer
-from notifications.tasks import send_notification  # Импорт задачи
-from rest_framework.permissions import IsAuthenticated
+from apps.notifications.tasks import send_notification
+
+
 
 
 class SubscriptionListView(APIView):
@@ -29,8 +31,8 @@ class SubscriptionDetailView(APIView):
     """Детали абонемента"""
 
 
-permission_classes = [IsAuthenticated]
-   def get(self, request, pk):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, pk):
         subscription = get_object_or_404(
             Subscription, pk=pk, user=request.user)
         serializer = SubscriptionSerializer(subscription)

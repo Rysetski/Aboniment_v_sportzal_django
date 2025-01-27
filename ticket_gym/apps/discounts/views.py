@@ -1,10 +1,10 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from django.shortcuts import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from .models import Discount
 from .serializers import DiscountSerializer
-from rest_framework.permissions import IsAuthenticated
 
 
 class DiscountListView(APIView):
@@ -26,11 +26,9 @@ class DiscountListView(APIView):
 
 class DiscountDetailView(APIView):
     """Детали скидки"""
+    permission_classes = [IsAuthenticated]
 
-
-permission_classes = [IsAuthenticated]
-
-   def get(self, request, pk):
+    def get(self, request, pk):
         discount = get_object_or_404(Discount, pk=pk)
         serializer = DiscountSerializer(discount)
         return Response(serializer.data)
@@ -47,6 +45,6 @@ permission_classes = [IsAuthenticated]
         discount = get_object_or_404(Discount, pk=pk)
         discount.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    #проверка на момент создания чтобы не было пересечений
-    #и промежуточную таблицу создать
+
+    # проверка на момент создания чтобы не было пересечений
+    # и промежуточную таблицу создать

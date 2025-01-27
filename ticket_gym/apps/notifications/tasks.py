@@ -12,6 +12,12 @@ def send_notification(user_id, message):
 
 
 @shared_task
+def send_notification(user_id, message):
+    # Логика отправки уведомления
+    print(f"Уведомление для пользователя {user_id}: {message}")
+
+
+@shared_task
 def test_task():
     print("Celery is working!")
     return "Task executed successfully"
