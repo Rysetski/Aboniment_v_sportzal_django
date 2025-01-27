@@ -141,3 +141,8 @@ CELERY_TASK_SERIALIZER = 'json'
 LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/api/'
 LOGOUT_REDIRECT_URL = '/auth/login/'
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+]

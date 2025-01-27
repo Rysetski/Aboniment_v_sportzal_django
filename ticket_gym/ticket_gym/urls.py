@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from apps.user_auth.views import home_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home_page, name='home'),
     path('auth/', include('apps.user_auth.urls')),  # URL-ы для авторизации
     path('gyms/', include('apps.gyms.urls')),  # URL-ы для спортзалов
     # URL-ы для абонементов

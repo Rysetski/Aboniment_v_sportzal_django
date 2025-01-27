@@ -4,6 +4,21 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from .serializers import UserSerializer
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def home_page(request):
+    return render(request, 'home.html', {
+        'title': 'Главная страница',
+        'sections': [
+            {'name': 'Тренажёрные залы', 'url': '/gyms/'},
+            {'name': 'Скидки', 'url': '/discounts/'},
+            {'name': 'Уведомления', 'url': '/notifications/'},
+            {'name': 'Личный кабинет', 'url': '/subscriptions/'},
+        ]
+    })
 
 
 class UserProfileView(APIView):
