@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from apps.user_auth.views import home_page
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('discounts/', include('apps.discounts.urls')),  # URL-ы для скидок
     # URL-ы для уведомлений
     path('notifications/', include('apps.notifications.urls')),
+    path('logout/', LogoutView.as_view(), name='logout'),   # Добавлено для разавторизации
 ]

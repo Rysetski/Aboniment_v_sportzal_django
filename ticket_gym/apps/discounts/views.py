@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -5,6 +6,13 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .models import Discount
 from .serializers import DiscountSerializer
+from django.shortcuts import render
+
+
+@login_required
+def discount_list(request):
+    discounts = Discount.objects.all()  # Получаем все скидки
+    return render(request, 'discounts/discounts.html', {'discounts': discounts})
 
 
 class DiscountListView(APIView):

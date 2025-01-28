@@ -1,10 +1,18 @@
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Gym
 from .serializers import GymSerializer
 from rest_framework.permissions import IsAuthenticated
+
+
+
+@login_required
+def gym_list(request):
+    gyms = Gym.objects.all()  # Получаем все тренажёрные залы
+    return render(request, 'gyms/gyms.html', {'gyms': gyms})
 
 
 class GymListView(APIView):

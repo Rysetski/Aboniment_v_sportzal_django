@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Личный кабинет</title>
+  </head>
+  <body>
+    <h1>Ваши абонементы</h1>
+    <ul>
+      {% for subscription in subscriptions %}
+      <li>
+        <h2>{{ subscription.gym.name }}</h2>
+        <p>Дата начала: {{ subscription.start_date }}</p>
+        <p>Дата окончания: {{ subscription.end_date }}</p>
+        <p>Стоимость: {{ subscription.price }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

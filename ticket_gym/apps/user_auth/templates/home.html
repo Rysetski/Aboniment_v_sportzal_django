@@ -26,6 +26,12 @@
       .button:hover {
         background-color: #0056b3;
       }
+      .logout-button {
+        background-color: #dc3545;
+      }
+      .logout-button:hover {
+        background-color: #c82333;
+      }
     </style>
   </head>
   <body>
@@ -35,6 +41,12 @@
       {% for section in sections %}
       <a href="{{ section.url }}" class="button">{{ section.name }}</a>
       {% endfor %}
+    </div>
+    <div class="button-container">
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="button logout-button">Выйти</button>
+      </form>
     </div>
   </body>
 </html>

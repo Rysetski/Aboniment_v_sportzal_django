@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Уведомления</title>
+  </head>
+  <body>
+    <h1>Уведомления</h1>
+    <ul>
+      {% for notification in notifications %}
+      <li>
+        <p>{{ notification.message }}</p>
+        <p>Создано: {{ notification.created_at }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
