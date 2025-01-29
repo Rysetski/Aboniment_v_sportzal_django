@@ -8,11 +8,17 @@ from .serializers import GymSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
-
 @login_required
 def gym_list(request):
     gyms = Gym.objects.all()  # Получаем все тренажёрные залы
     return render(request, 'gyms/gyms.html', {'gyms': gyms})
+
+
+@login_required
+def gym_detail(request, pk):
+    """Страница деталей тренажёрного зала"""
+    gym = get_object_or_404(Gym, pk=pk)
+    return render(request, 'gyms/gym_detail.html', {'gym': gym})
 
 
 class GymListView(APIView):

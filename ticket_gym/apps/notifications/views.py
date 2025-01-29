@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -6,6 +7,12 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Notification
 from .serializers import NotificationSerializer
 
+
+@login_required
+def notification_list(request):
+    """Отображение страницы с уведомлениями"""
+    notifications = Notification.objects.filter(user=request.user)
+    return render(request, 'notifications/notification_list.html', {'notifications': notifications})
 
 
 class NotificationListView(APIView):

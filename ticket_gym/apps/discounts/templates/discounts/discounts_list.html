@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html>
+    <head>
+      <title>Скидки</title>
+    </head>
+    <body>
+      <h1>список скидкок</h1>
+      <ul>
+        {% for discount in discounts %}
+        <li>
+          <h2>{{ discount.code }}</h2>
+          <p>{{ discount.description }}</p>
+          <p>Скидка: {{ discount.discount_percentage }}%</p>
+          <p>
+            Действует с {{ discount.valid_from }} по {{ discount.valid_until }}
+          </p>
+        </li>
+        {% endfor %}
+      </ul>
+    </body>
+  </html>
+</html>

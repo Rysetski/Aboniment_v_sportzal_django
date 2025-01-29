@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Тренажёрные залы</title>
+  </head>
+  <body>
+    <h1>Тренажёрные залы</h1>
+    <ul>
+      {% for gym in gyms %}
+      <li>
+        <a href="{% url 'gym-detail' gym.id %}">{{ gym.name }}</a>
+        <p>{{ gym.description }}</p>
+      </li>
+      <li>
+        <h2>{{ gym.name }}</h2>
+        <p>{{ gym.description }}</p>
+        <p>Адрес: {{ gym.address }}</p>
+        <p>Телефон: {{ gym.phone_number }}</p>
+        <img src="{{ gym.image.url }}" alt="{{ gym.name }}" width="200" />
+      </li>
+
+      {% endfor %} {% for gym in gyms %}
+      <a href="{% url 'subscription-purchase' gym.id %}"
+        >Купить абонемент в {{ gym.name }}</a
+      >
+      {% endfor %}
+    </ul>
+  </body>
+</html>

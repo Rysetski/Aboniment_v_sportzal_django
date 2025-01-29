@@ -9,11 +9,6 @@ from .models import CustomUser
 from .serializers import UserSerializer
 
 
-
-
-
-
-
 @login_required
 def home_page(request):
     return render(request, 'home.html', {
