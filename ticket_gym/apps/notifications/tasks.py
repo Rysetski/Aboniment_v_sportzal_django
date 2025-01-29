@@ -11,10 +11,6 @@ def send_notification(user_id, message):
     return f"Notification sent to {user.username}"
 
 
-@shared_task
-def send_notification(user_id, message):
-    # Логика отправки уведомления
-    print(f"Уведомление для пользователя {user_id}: {message}")
 
 
 @shared_task

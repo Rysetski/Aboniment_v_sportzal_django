@@ -11,4 +11,4 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Subscription
-        fields = ('id', 'user', 'gym', 'start_date', 'end_date', 'price')
+        fields = ('id', 'start_date', 'end_date', 'price', 'user_email', 'gym_name')    #'user', 'gym',

@@ -9,17 +9,21 @@
       {% csrf_token %}
       <button type="submit">Купить</button>
     </form>
-    <form method="post" action="{% url 'buy-subscription' gym_id %}">
+    <form method="post" >
       {% csrf_token %}
-      <label for="gym">Выберите тренажёрный зал:</label>
-      <select id="gym" name="gym">
+      <label for="gym">Подтвердите абонимент на зал {{ gym.name}}:</label>
+      {% comment %} <select id="gym" name="gym">
         {% for gym in gyms %}
         <option value="{{ gym.id }}">{{ gym.name }}</option>
         {% endfor %}
-      </select>
+      </select> {% endcomment %}
       <br />
       <label for="start_date">Дата начала:</label>
       <input type="date" id="start_date" name="start_date" />
+      <br />
+      <br />
+      <label for="discount">Промокод:</label>
+      <input type="text" id="discount" name="discount" />
       <br />
       <label for="end_date">Дата окончания:</label>
       <input type="date" id="end_date" name="end_date" />

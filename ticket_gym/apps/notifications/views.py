@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -6,13 +6,14 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .models import Notification
 from .serializers import NotificationSerializer
+from django.urls import reverse
 
 
 @login_required
 def notification_list(request):
     """Отображение страницы с уведомлениями"""
     notifications = Notification.objects.filter(user=request.user)
-    return render(request, 'notifications/notification_list.html', {'notifications': notifications})
+    return render(request, 'notifications/notifications.html', {'notifications': notifications})
 
 
 class NotificationListView(APIView):
@@ -70,3 +71,16 @@ class MarkNotificationAsReadView(APIView):
         notification.is_read = True
         notification.save()
         return Response({"detail": "Notification marked as read."}, status=status.HTTP_200_OK)
+    
+
+
+    
+
+def cheker_notifications(request, pk):
+    notification = get_object_or_404(
+        Notification, pk=pk, user=request.user)
+    notification.is_read = True
+    notification.save()
+    return redirect(reverse('notification-list'))
+
+

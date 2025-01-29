@@ -11,6 +11,7 @@ class Gym(models.Model):
     address = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
     image = models.ImageField(upload_to='gym_images/', blank=True, null=True)
+    first_prise = models.IntegerField(default=50)
 
     def __str__(self):
         return self.name

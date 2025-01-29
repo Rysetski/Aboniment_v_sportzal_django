@@ -9,7 +9,7 @@ from apps.gyms.models import Gym
 from .serializers import SubscriptionSerializer
 from apps.notifications.tasks import send_notification
 from datetime import datetime, timedelta
-
+from apps.discounts.models import Discount
 
 
 
@@ -51,19 +51,26 @@ def subscription_list(request):
 def subscription_purchase(request, gym_id):
     """Страница покупки абонемента"""
     gym = get_object_or_404(Gym, pk=gym_id)
+    discount = Discount.objects.filter (code = request.POST.get('discount')).first()
+    
     if request.method == 'POST':
         # Логика создания абонемента
         start_date = datetime.now().date()
         end_date = start_date + timedelta(days=30)  # Абонемент на 30 дней
-        Subscription.objects.create(
+        subscription=Subscription.objects.create(
             user=request.user,
             gym=gym,
             start_date=start_date,
             end_date=end_date,
-            price=50.00  # Цена абонемента
+            price=gym.first_prise*(discount.discount_percentage/100) if discount is not None else gym.first_prise  # Цена абонемента
         )
+        
+        send_notification.delay(
+                user_id=request.user.id,
+                message=f"Вы оформили подписку на {subscription.gym.name}"
+            )
         # Перенаправление в личный кабинет
-        return redirect('subscription-list')
+        return render(request, 'subscriptions/success.html', {'gym': gym})
     return render(request, 'subscriptions/purchase.html', {'gym': gym})
 
 

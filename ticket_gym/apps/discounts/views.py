@@ -10,9 +10,9 @@ from django.shortcuts import render
 
 
 @login_required
-def discount_list(request):
+def discount_list_html(request):
     discounts = Discount.objects.all()  # Получаем все скидки
-    return render(request, 'discounts/discounts.html', {'discounts': discounts})
+    return render(request, 'discounts/discounts_list.html', {'discounts': discounts})
 
 
 class DiscountListView(APIView):

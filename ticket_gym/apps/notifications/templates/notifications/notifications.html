@@ -13,11 +13,17 @@
         <p>{{ notification.message }}</p>
         <p>Создано: {{ notification.created_at }}</p>
         <p>
-          {% if notification.is_read %}Прочитано{% else %}Не прочитано{% endif
-          %}
+          {% if notification.is_read %}Прочитано{% else %}
+          <form method="post" action="{% url 'cheker_notifications' notification.id %}">
+            
+            {% csrf_token %}
+            <button type="submit">Прочитать </button>
+          </form>
+           {% endif%}
         </p>
       </li>
       {% endfor %}
+
     </ul>
   </body>
 </html>

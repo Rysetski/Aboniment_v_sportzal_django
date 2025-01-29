@@ -20,9 +20,12 @@
       </li>
 
       {% endfor %} {% for gym in gyms %}
-      <a href="{% url 'subscription-purchase' gym.id %}"
-        >Купить абонемент в {{ gym.name }}</a
-      >
+      <div>
+        <p>{{ gym.name }}</p>
+        <a href="{% url 'subscription_purchase' gym.id %}" class="button">
+          Купить абонемент в {{ gym.name }}
+        </a>
+      </div>
       {% endfor %}
     </ul>
   </body>

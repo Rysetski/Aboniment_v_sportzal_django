@@ -1,0 +1,24 @@
+<!-- apps/gyms/templates/gyms/gyms.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Список тренажёрных залов</title>
+  </head>
+  <body>
+    <h1>Список тренажёрных залов</h1>
+    <ul>
+
+      {% for gym in gyms %}
+      <div>
+        <p>{{ gym.name }}</p>
+        <a href="{% url 'subscription_purchase' gym.id %}" class="button">
+          Купить абонемент в {{ gym.name }}
+        </a>
+      </div>
+      <li>{{ gym.name }}</li>
+      <img src="{{ gym.image.url }}" />
+      
+      {% endfor %}
+    </ul>
+  </body>
+</html>

@@ -15,9 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from apps.user_auth.views import home_page
 from django.contrib.auth.views import LogoutView
+from django.views.static import serve
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +33,12 @@ urlpatterns = [
     # URL-ы для уведомлений
     path('notifications/', include('apps.notifications.urls')),
     path('logout/', LogoutView.as_view(), name='logout'),   # Добавлено для разавторизации
+    
 ]
+urlpatterns += (
+    re_path(
+        r"^media/(?P<path>.*)$",
+        serve,
+        {"document_root": settings.MEDIA_ROOT},
+    ),
+)
