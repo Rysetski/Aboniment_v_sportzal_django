@@ -5,20 +5,28 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from .models import CustomUser
+# from .models import CustomUser
 from .serializers import UserSerializer
+from apps.gyms.models import Gym
+from django.urls import reverse
+
+from django.http import JsonResponse, HttpResponse
+
+
 
 
 @login_required
 def home_page(request):
+    gyms = Gym.objects.all() 
     return render(request, 'home.html', {
         'title': 'Главная страница',
         'sections': [
-            {'name': 'Тренажёрные залы', 'url': '/gyms/'},
-            {'name': 'Скидки', 'url': '/discounts/'},
-            {'name': 'Уведомления', 'url': '/notifications/'},
-            {'name': 'Личный кабинет', 'url': '/subscriptions/'},
-        ]
+             {'name': 'Тренажёрные залы', 'url': reverse('gym-list')},
+            {'name': 'Скидки', 'url': reverse('discount-list')},
+            {'name': 'Уведомления', 'url': reverse('notification-list')},
+            {'name': 'Личный кабинет', 'url': reverse('subscription-list')},
+        ],
+        'gyms': gyms,
     })
 
 

@@ -48,14 +48,18 @@
             <button type="submit" class="button logout-button">Выйти</button>
         </form>
     </div>
+    
     <div class="gyms-container">
-        <h2>Тренажёрные залы</h2>
-        {% for gym in gyms %}
-        <div>
-            <p>{{ gym.name }}</p>
-            <a href="{% url 'subscription_purchase' gym.id %}" class="button">Купить абонемент</a>
-        </div>
-        {% endfor %}
+      <h2>Тренажёрные залы</h2>
+      {% for gym in gyms %}
+      <div>
+        <p>{{ gym.name }}</p>
+        <a href="{% url 'subscription_purchase' gym.id %}" class="button">
+          Купить абонемент в {{ gym.name }}
+        </a>
+      </div>
+      {% endfor %}
     </div>
+    
 </body>
 </html>

@@ -11,6 +11,12 @@ from apps.notifications.tasks import send_notification
 from datetime import datetime, timedelta
 
 
+
+
+
+
+
+
 @login_required
 def subscription_list(request):
     """Отображение личного кабинета с абонементами"""
