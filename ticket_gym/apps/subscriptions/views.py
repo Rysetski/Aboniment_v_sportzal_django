@@ -10,7 +10,7 @@ from .serializers import SubscriptionSerializer
 from apps.notifications.tasks import send_notification
 from datetime import datetime, timedelta
 from apps.discounts.models import Discount
-
+from apps.notifications.tasks import send_notification, send_email_about_subscription
 
 
 
@@ -69,6 +69,7 @@ def subscription_purchase(request, gym_id):
                 user_id=request.user.id,
                 message=f"Вы оформили подписку на {subscription.gym.name}"
             )
+        send_email_about_subscription.delay(request.user.id, subscription.id) #отправка на почту
         # Перенаправление в личный кабинет
         return render(request, 'subscriptions/success.html', {'gym': gym})
     return render(request, 'subscriptions/purchase.html', {'gym': gym})
