@@ -24,7 +24,7 @@ def home_page(request):
              {'name': 'Тренажёрные залы', 'url': reverse('gym-list')},
             {'name': 'Скидки', 'url': reverse('discount-list')},
             {'name': 'Уведомления', 'url': reverse('notification-list')},
-            {'name': 'Личный кабинет', 'url': reverse('subscription-list')},
+            {'name': 'Личный кабинет', 'url': reverse('subscription-list-html')},
         ],
         'gyms': gyms,
     })

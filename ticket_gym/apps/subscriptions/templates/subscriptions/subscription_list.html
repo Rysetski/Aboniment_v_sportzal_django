@@ -7,6 +7,11 @@
     <title>Личный кабинет</title>
 </head>
   <body>
+    <a href="{% url 'home' %}">Главная страница</a>
+    <a href="{% url 'subscription-list-html' %}">Мой личный кабинет (абонементы)</a>
+    <a href="{% url 'gym-list' %}">Тренажёрные залы</a>
+    <a href="{% url 'discount-list' %}">Скидки</a>
+    <a href="{% url 'notification-list' %}">Уведомления</a>
     <h1>Ваши абонементы</h1>
     <ul>
       {% for subscription in subscriptions %}

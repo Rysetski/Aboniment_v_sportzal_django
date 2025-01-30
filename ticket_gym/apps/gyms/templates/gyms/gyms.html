@@ -1,10 +1,18 @@
 <!-- apps/gyms/templates/gyms/gyms.html -->
 <!DOCTYPE html>
 <html>
+  <a href="{% url 'home' %}">Главная страница</a>
+  <a href="{% url 'subscription-list-html' %}">Мой личный кабинет (абонементы)</a>
+  <a href="{% url 'gym-list' %}">Тренажёрные залы</a>
+  <a href="{% url 'discount-list' %}">Скидки</a>
+  <a href="{% url 'notification-list' %}">Уведомления</a>
+
+  home
   <head>
     <title>Список тренажёрных залов</title>
   </head>
   <body>
+    
     <h1>Список тренажёрных залов</h1>
     <ul>
 

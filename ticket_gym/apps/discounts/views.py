@@ -55,4 +55,4 @@ class DiscountDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     # проверка на момент создания чтобы не было пересечений
-    # и промежуточную таблицу создать
+   
