@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required  # Добавлен импорт
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -9,6 +11,7 @@ from .models import CustomUser
 from .serializers import UserSerializer
 from apps.gyms.models import Gym
 from django.urls import reverse
+from .forms import CustomUserCreationForm
 
 from django.http import JsonResponse, HttpResponse
 
@@ -49,3 +52,16 @@ class RegisterView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+def register_html(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+                user = form.save()  # Сохраняем пользователя
+                #на страницу входа:
+                login(request, user)
+                return redirect('home')  
+    else:
+        form = UserCreationForm()
+    return render(request, 'user_auth/register.html', {'form': form})
