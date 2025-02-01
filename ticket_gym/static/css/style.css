@@ -9282,3 +9282,31 @@ ol.comment-list li.comment .comment-respond .comment-form p {
   }
 }
 /*# sourceMappingURL=style.css.map */
+
+
+#animated-button-logaut-first {
+  background-color: #ff8c00; /* Оранжевый цвет */
+  color: black; /* Чёрный текст */
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+  border-radius: 8px; /* Закругление углов */
+  text-align: center;
+  display: inline-block;
+  width: auto;
+}
+
+/* Эффект при наведении */
+#animated-button-logaut-first:hover {
+  background-color: black; /* Фон становится чёрным */
+  color: white; /* Текст становится белым */
+}
+
+/* Дополнительный эффект для клика */
+#animated-button-logaut-first:active {
+  transform: scale(0.95); /* Лёгкий эффект нажатия */
+}

@@ -69,6 +69,17 @@
             </ul>
           </div>
           
+        <form>
+          
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+              <button type="submit" class="animated-button-logaut-first logout-button">Нажми меня</button>
+          </form>
+
+
+
+
+
           <div class="extra-nav header-2-nav">
             <div class="extra-cell">
                 <div class="ap-btn-outer">
@@ -78,7 +89,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+          </div>
         </div>
       </div>
     </div>
@@ -106,17 +117,17 @@
           </button> 
 
           <!-- MAIN Nav -->
-          <div class="nav-animation header-nav navbar-collapse collapse d-flex justify-content-center">
-            <ul class="nav navbar-nav1 ">
-              <li class="{% url 'home' %}"><a href="#">Glavnayua</a></li>
-              <li><a href="{% url 'subscription-list-html' %}">Мой личный кабинет (абонементы)</a></li>
-              <li><a href="{% url 'gym-list' %}">Тренажёрные залы</a></li>
-              <li><a href="{% url 'discount-list' %}">Скидки</a></li>
-              <li><a href="{% url 'notification-list' %}">Уведомления</a></li>
-              <li><a href="#">Blog</a></li>
+          <div class="nav-animation header-nav  collapse d-flex justify-content-center">
+            <ul class="nav navbar-nav ">
+              <li class="{% url 'home' %}"><a href="#">ZYMMY</a></li>
+              <li class="nav-item"><a href="{% url 'subscription-list-html' %}">Мой личный кабинет (абонементы)</a></li>
+              <li class="nav-item"><a href="{% url 'gym-list' %}">Тренажёрные залы</a></li>
+              <li class="nav-item"><a href="{% url 'discount-list' %}">Скидки</a></li>
+              <li class="nav-item"><a href="{% url 'notification-list' %}">Уведомления</a></li>
+              {% comment %} <li><a href="#">Blog</a></li> {% endcomment %}
             </ul>
           </div> 
-          <ul class="nav justify-content-center">
+          {% comment %} <ul class="nav justify-content-center">
             <li class="nav-item">
               <a class="nav-link active"><a href=""{% url 'home' %}"">Glavnayua</a>
             </li>
@@ -133,7 +144,7 @@
             <li class="nav-item">
               <a class="nav-link" ><a href="{% url 'notification-list' %}">Уведомления</a>
             </li> 
-          </ul>
+          </ul> {% endcomment %}
 
 
           {% comment %} <a href="{% url 'home' %}">Главная страница</a> {% endcomment %}

@@ -599,7 +599,25 @@ function workout_slider3(){
 	
 	}
 
+if (typeof $.fn.theiaStickySidebar !== "undefined") {
+	$(".sidebar").theiaStickySidebar({
+			additionalMarginTop: 30
+	});
+} else {
+		console.warn("Theia Sticky Sidebar не загружен!");
+}
 
+
+$(document).ready(function () {
+    if (typeof $.fn.theiaStickySidebar !== "undefined") {
+        console.log("✅ Theia Sticky Sidebar загружен!");
+        $(".sidebar").theiaStickySidebar({
+            additionalMarginTop: 30
+        });
+    } else {
+        console.warn("⚠️ Ошибка: Theia Sticky Sidebar не загружен!");
+    }
+});
 
 
 
