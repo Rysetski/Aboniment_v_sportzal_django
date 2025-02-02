@@ -11,9 +11,10 @@
   
   <!-- Стили -->
   <style>
-    body {
+    html, body {
       background: url("{% static 'images/gyms.jpg' %}")
         no-repeat center center fixed;
+        height: 100%;
       background-size: cover;
     }
     .navbar-custom, .footer-custom {
@@ -32,10 +33,11 @@
     .footer-custom {
       padding: 20px;
       display: flex;
-      justify-content: space-between; 
+      justify-content: space-between;
       align-items: center;
-      background-image: url("{% static '#' %}");
+      background-image: url("{% static 'images/footer-background.jpg' %}");
       background-size: cover;
+      color: #fff;
     }
 
     .card-img-top {

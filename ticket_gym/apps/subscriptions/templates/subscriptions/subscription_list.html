@@ -5,13 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Личный кабинет</title>
-
     <!-- Bootstrap CSS через CDN -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
     <!-- Font Awesome через CDN -->
     <link
       rel="stylesheet"
@@ -19,42 +17,59 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
     <!-- Дополнительные стили -->
     <style>
-     
+      html,
+      body {
+        height: 100%; /* полная высота для всей страницы */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column; /* делает основное направление страницы вертикальным */
+      }
+      .content {
+        flex: 1; /* позволяет контенту занимать всё доступное пространство, кроме header и footer */
+      }
       body {
         background: url("{% static 'images/список обониментов.jpg' %}")
           no-repeat center center fixed;
         background-size: cover;
+        color: #fff;
       }
-      /* Стили для Navbar */
-      .navbar-custom {
+      .navbar-custom,
+      .footer-custom {
         background-color: #000; /* черный фон */
       }
       .navbar-custom .navbar-brand,
-      .navbar-custom .nav-link {
+      .navbar-custom .nav-link,
+      .footer-custom a,
+      .footer-custom p {
         color: #fff; /* белый текст */
       }
-      .navbar-custom .nav-link:hover {
+      .navbar-custom .nav-link:hover,
+      .footer-custom a:hover {
         color: #ffa500; /* оранжевый при наведении */
       }
-      /* Стили для карточек с абонементами */
       .card {
-        background-color: rgba(0, 0, 0, 0.8); /* полупрозрачный черный фон */
-        color: #fff;
+        background-color: rgba(153, 115, 44, 0.8); /* полупрозрачный черный фон */
       }
       .card-title {
         color: #ffa500; /* оранжевый заголовок */
       }
       .footer-custom {
-        padding: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 20px;
         background-image: url("{% static 'images/footer-background.jpg' %}");
         background-size: cover;
-        color: #fff;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+      .logo img {
+        width: 100px; /* Adjust the size of the logo */
       }
     </style>
   </head>
@@ -100,7 +115,7 @@
     </nav>
 
     <!-- Основной контент -->
-    <div class="container my-5">
+    <div class="container my-5 content">
       <h1 class="text-center text-warning mb-4">Ваши абонементы</h1>
       <div class="row">
         {% for subscription in subscriptions %}
@@ -126,9 +141,10 @@
       </div>
     </div>
 
+    <!-- Футер -->
     <footer class="footer-custom">
-      <div>
-        <img src="{% static 'images/logo-light.png' %}" alt="logo-light">
+      <div class="logo">
+        <img src="{% static 'images/logo-light.png' %}" alt="Logo" />
       </div>
       <div>
         <p>Адрес: 12345 Новый Век, Москва, Россия</p>
@@ -136,8 +152,8 @@
         <p>Разработчик: Web Solutions © 2023</p>
       </div>
       <div>
-        <a href="https://facebook.com" class="me-2">Facebook</a>
-        <a href="https://twitter.com" class="me-2">Twitter</a>
+        <a href="https://facebook.com">Facebook</a>
+        <a href="https://twitter.com">Twitter</a>
         <a href="https://linkedin.com">LinkedIn</a>
       </div>
     </footer>
