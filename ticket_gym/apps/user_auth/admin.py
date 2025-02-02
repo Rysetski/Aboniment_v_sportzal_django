@@ -28,3 +28,10 @@ class CustomUserAdmin(UserAdmin):
 
     search_fields = ("email", "username")
     ordering = ("email",)
+
+
+
+# <form method="post" action="{% url 'logout' %}">
+#             {% csrf_token %}
+#               <button type="submit" class="animated-button-logaut-first logout-button">Нажми меня</button>
+# </form>

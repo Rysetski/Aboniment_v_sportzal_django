@@ -3,28 +3,28 @@ YOU CAN WRIGHT CUSTOME CSS
 ======================================*/
 /* Основные стили кнопки */
 .animated-button-logaut-first {
-    background-color: #ff8c00; /* Оранжевый цвет */
-    color: black; /* Чёрный текст */
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
-    border-radius: 8px; /* Закругление углов */
-    text-align: center;
-    display: inline-block;
-    width: auto;
+    background-color: #ff8c00 !important; /* Оранжевый цвет */
+    color: black !important; /* Чёрный текст */
+    border: none !important;
+    padding: 12px 24px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out !important;
+    border-radius: 8px !important; /* Закругление углов */
+    text-align: center !important;
+    display: inline-block !important;
+    width: auto !important;
 }
 
 /* Эффект при наведении */
 .animated-button-logaut-first:hover {
-    background-color: black; /* Фон становится чёрным */
-    color: white; /* Текст становится белым */
+    background-color: black !important;/* Фон становится чёрным */
+    color: white !important; /* Текст становится белым */
 }
 
 /* Дополнительный эффект для клика */
 .animated-button-logaut-first:active {
-    transform: scale(0.95); /* Лёгкий эффект нажатия */
+    transform: scale(0.95) !important; /* Лёгкий эффект нажатия */
 }
