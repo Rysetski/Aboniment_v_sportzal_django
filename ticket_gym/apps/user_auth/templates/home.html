@@ -97,13 +97,13 @@
             </div>
           </div>  
           
-          <!-- NAV Toggle Button -->
+          {% comment %} <!-- NAV Toggle Button -->
           <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button" class="navbar-toggler collapsed">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar icon-bar-first">3</span>
             <span class="icon-bar icon-bar-two">2</span>
             <span class="icon-bar icon-bar-three">1</span>
-          </button> 
+          </button>  {% endcomment %}
 
           <!-- MAIN Nav -->
           <div class="nav-animation header-nav  collapse d-flex justify-content-center">
@@ -189,10 +189,51 @@
       
     </div>
 
+    
+
+
+
+
 
   </div>
   <!-- CONTENT END -->
-
+  <div class="container my-5">
+    <!-- Внешний блок с тёмным фоном -->
+    <div class="p-4 rounded-3" style="background-color: #222; color: #fff;">
+      
+      <!-- Заголовок и приветствие -->
+      <h1 class="mb-3" style="color: #ff6a01;">{{ title }}</h1>
+      <p class="mb-4" style="font-size: 1.1rem;">
+        Добро пожаловать, <strong>{{ user.username }}</strong>!
+      </p>
+      
+      <!-- Блок "Тренажёрные залы" -->
+      <div class="gyms-container">
+        <h2 class="mb-4" style="color: #ff6a01;">Тренажёрные залы</h2>
+        
+        <!-- Сетка карточек Bootstrap -->
+        <div class="row">
+          {% for gym in gyms %}
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow" style="background-color: #2d2d2d; border: none;">
+                <div class="card-body text-light">
+                  <h5 class="card-title" style="color: #ff6a01;">{{ gym.name }}</h5>
+                  <p class="card-text" style="color: #bbb;">
+                    {{ gym.address }}
+                  </p>
+                  <a href="{% url 'subscription_purchase' gym.id %}" class="btn btn-warning text-dark">
+                    Купить абонемент
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div> <!-- / gyma-container -->
+      
+    </div> <!-- / тёмный контейнер -->
+  </div> <!-- / container -->
+  
   <!-- FOOTER START -->
   <footer class="site-footer footer-dark">
     <!-- FOOTER BLOCK START -->
