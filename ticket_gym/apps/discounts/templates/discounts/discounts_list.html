@@ -10,7 +10,13 @@
   <!-- Стили -->
   <style>
     html, body {
-      height: 100%; /* Полная высота для html и body */
+      height: 100%; 
+    }
+    body {
+      background: url("{% static 'images/gyms.jpg' %}")
+        no-repeat center center fixed;
+      background-size: cover;
+      height: 100%; 
     }
     .wrapper {
       display: flex;
@@ -40,12 +46,6 @@
       align-items: center;
       background-image: url("{% static 'images/footer-background.jpg' %}");
       background-size: cover;
-    }
-    .footer-logo {
-      width: 60px;
-      height: 60px;
-      background-color: #fff;
-      border-radius: 50%;
     }
   </style>
 </head>
@@ -92,7 +92,9 @@
 
     <!-- Футер -->
     <footer class="footer-custom">
-      <div class="footer-logo"></div>
+      <div>
+        <img src="{% static 'images/logo-light.png' %}" alt="logo-light">
+      </div>
       <div>
         <p>Адрес: 12345 Новый Век, Москва, Россия</p>
         <p>Контакты: +7 123 456 7890 | info@example.com</p>

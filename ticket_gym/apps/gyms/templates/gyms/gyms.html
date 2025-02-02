@@ -11,6 +11,11 @@
   
   <!-- Стили -->
   <style>
+    body {
+      background: url("{% static 'images/gyms.jpg' %}")
+        no-repeat center center fixed;
+      background-size: cover;
+    }
     .navbar-custom, .footer-custom {
       background-color: #000; /* черный фон */
     }
@@ -27,17 +32,12 @@
     .footer-custom {
       padding: 20px;
       display: flex;
-      justify-content: space-between; /* Равномерно распределяет контент в футере */
+      justify-content: space-between; 
       align-items: center;
-      background-image: url("{% static 'images/footer-background.jpg' %}");
+      background-image: url("{% static 'images/спорт_залы.jpg' %}");
       background-size: cover;
     }
-    .footer-logo {
-      width: 60px; /* Размер заглушки логотипа */
-      height: 60px;
-      background-color: #fff; /* Белый фон для заглушки логотипа */
-      border-radius: 50%; /* Круглая форма */
-    }
+
     .card-img-top {
       width: 100%;
       height: auto;
@@ -95,7 +95,9 @@
 
   <!-- Футер -->
   <footer class="footer-custom">
-    <div class="footer-logo"></div> <!-- Заглушка для логотипа -->
+    <div>
+      <img src="{% static 'images/logo-light.png' %}" alt="logo-light">
+    </div>
     <div>
       <p>Адрес: 12345 Новый Век, Москва, Россия</p>
       <p>Контакты: +7 123 456 7890 | info@example.com</p>
