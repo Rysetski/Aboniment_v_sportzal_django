@@ -39,7 +39,16 @@
   <!-- Ваша основная тема — style.css (Локально) -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-
+  <style>
+    html, body {
+      height: 100%; /* Полная высота для html и body */
+    }
+    body {
+      background: url("{% static 'images/уведомления.jpg' %}")
+        no-repeat center center fixed;
+      background-size: cover;
+    }
+  </style>
 
 
 </head>

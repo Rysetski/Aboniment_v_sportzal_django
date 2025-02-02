@@ -53,8 +53,11 @@
       border-radius: 50%;
     }
     .list-group-item {
-      background-color: rgba(0,0,0,0.1);
-      color: #000;
+      background-color: rgba(230, 182, 25, 0.1);
+      color: rgba(255, 255, 255, 0.96);
+    }
+    .list-group-item p {
+      font-weight: 700;
     }
   </style>
 </head>
@@ -62,17 +65,39 @@
   <div class="wrapper">
     <!-- Навигационная панель -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-      <div class="container-fluid">
+      <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">Главная страница</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="{% url 'subscription-list-html' %}">Мой личный кабинет (абонементы)</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'gym-list' %}">Тренажёрные залы</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'discount-list' %}">Скидки</a></li>
-            <li class="nav-item"><a class="nav-link active" href="{% url 'notification-list' %}">Уведомления</a></li>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'subscription-list-html' %}"
+                >Мой личный кабинет (абонементы)</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'gym-list' %}"
+                >Тренажёрные залы</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'discount-list' %}">Скидки</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'notification-list' %}"
+                >Уведомления</a
+              >
+            </li>
           </ul>
         </div>
       </div>

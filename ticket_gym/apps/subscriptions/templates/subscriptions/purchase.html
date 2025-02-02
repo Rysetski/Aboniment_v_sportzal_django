@@ -1,39 +1,139 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Купить абонемент</title>
-  </head>
-  <body>
-    <a href="{% url 'home' %}">Главная страница</a>
-    <a href="{% url 'subscription-list-html' %}">Мой личный кабинет (абонементы)</a>
-    <a href="{% url 'gym-list' %}">Тренажёрные залы</a>
-    <a href="{% url 'discount-list' %}">Скидки</a>
-    <a href="{% url 'notification-list' %}">Уведомления</a>
-    <h1>Купить абонемент</h1>
-    <form method="post">
-      {% csrf_token %}
-      <button type="submit">Купить</button>
-    </form>
-    <form method="post" >
-      {% csrf_token %}
-      <label for="gym">Подтвердите абонимент на зал {{ gym.name}}:</label>
-      {% comment %} <select id="gym" name="gym">
-        {% for gym in gyms %}
-        <option value="{{ gym.id }}">{{ gym.name }}</option>
-        {% endfor %}
-      </select> {% endcomment %}
-      <br />
-      <label for="start_date">Дата начала:</label>
-      <input type="date" id="start_date" name="start_date" />
-      <br />
-      <br />
-      <label for="discount">Промокод:</label>
-      <input type="text" id="discount" name="discount" />
-      <br />
-      <label for="end_date">Дата окончания:</label>
-      <input type="date" id="end_date" name="end_date" />
-      <br />
-      <button type="submit">Купить</button>
-    </form>
-  </body>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Купить абонемент</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Стили -->
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      background: url("{% static 'images/gyms.jpg' %}")
+        no-repeat center center fixed;
+      background-size: cover;
+      height: 100%;
+    }
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    .navbar-custom, .footer-custom {
+      background-color: #000;
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link,
+    .footer-custom a,
+    .footer-custom p {
+      color: #fff;
+    }
+    .navbar-custom .nav-link:hover,
+    .footer-custom a:hover {
+      color: #FFA500;
+    }
+    .footer-custom {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-image: url("{% static 'images/footer-background.jpg' %}");
+      background-size: cover;
+    }
+    .footer-logo {
+      width: 60px;
+      height: 60px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    form {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    label, input, button {
+      width: 100%;
+      margin-top: 10px;
+    }
+    button {
+      background-color: #FFA500;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff8700;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Главная страница</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="{% url 'subscription-list-html' %}">Мой личный кабинет (абонементы)</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'gym-list' %}">Тренажёрные залы</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'discount-list' %}">Скидки</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'notification-list' %}">Уведомления</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Контент -->
+    <div class="container my-4 content">
+      <h1 class="text-center text-warning mb-4">Купить абонемент</h1>
+      <form method="post" class="text-center">
+        {% csrf_token %}
+        {% comment %} <label for="gym">Выберите зал:</label>
+        <select id="gym" name="gym" class="form-control"> {% endcomment %}
+          {% for gym in gyms %}
+          <option value="{{ gym.id }}">{{ gym.name }}</option>
+          {% endfor %}
+        </select>
+        <label for="start_date">Дата начала:</label>
+        <input type="date" id="start_date" name="start_date" class="form-control">
+        <label for="end_date">Дата окончания:</label>
+        <input type="date" id="end_date" name="end_date" class="form-control">
+        <label for="discount">Промокод (если есть):</label>
+        <input type="text" id="discount" name="discount" class="form-control">
+        <button type="submit" class="mt-4">Купить</button>
+      </form>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer-custom">
+      <div class="footer-logo"></div>
+      <div>
+        <p>Адрес: 12345 Новый Век, Москва, Россия</p>
+        <p>Контакты: +7 123 456 7890 | info@example.com</p>
+        <p>Разработчик: Web Solutions © 2023</p>
+      </div>
+      <div>
+        <a href="https://facebook.com" class="me-2">Facebook</a>
+        <a href="https://twitter.com" class="me-2">Twitter</a>
+        <a href="https://linkedin.com">LinkedIn</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

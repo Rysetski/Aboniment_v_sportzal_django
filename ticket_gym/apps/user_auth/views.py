@@ -13,7 +13,7 @@ from apps.gyms.models import Gym
 from django.urls import reverse
 from .forms import CustomUserCreationForm
 
-from django.http import JsonResponse, HttpResponse
+
 
 
 
