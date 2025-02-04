@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.subscriptions',
     'apps.discounts',
     'apps.notifications',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +164,24 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
+
+GRAPH_MODELS = {
+  'app_labels': [    "rest_framework",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "apps.user_auth",
+    "apps.gyms",
+    "apps.subscriptions",
+    "apps.discounts",
+    "apps.notifications"],
+}
