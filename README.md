@@ -2,8 +2,10 @@
 
 примерная схема проекта
 
+![что-то не так](ticket_gym/static/images/models1.png)
 
 схема проекта
+
 ![что-то не так](ticket_gym/static/images/my_project_visualized1.png)
 
 
